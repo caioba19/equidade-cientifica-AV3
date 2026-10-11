@@ -1,0 +1,29 @@
+services:
+  # Serviço Web Gratuito no Render para hospedar o Dashboard Streamlit
+  - type: web
+    name: dashboard-fomento-grupo3
+    runtime: python
+    region: ohio
+    plan: free
+    buildCommand: "pip install -r app/requirements.txt"
+    startCommand: "streamlit run app/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: DATABASE_URL
+        sync: false # Preencher no painel do Render com a URI de conexão da Aiven
+
+  # (Opcional) Cron Job no Render para execução periódica do pipeline de ETL
+  - type: cron
+    name: etl-fomento-grupo3
+    runtime: python
+    region: ohio
+    plan: free
+    schedule: "0 3 * * 0" # Executa todo domingo às 03:00
+    buildCommand: "pip install -r etl/requirements.txt"
+    startCommand: "python etl/etl_pipeline.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: DATABASE_URL
+        sync: false # Preencher com a mesma URI da Aiven

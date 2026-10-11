@@ -1,0 +1,11 @@
+# Copie este arquivo para terraform.tfvars e preencha com seus dados reais:
+# cp terraform.tfvars.example terraform.tfvars
+
+aiven_api_token    = "SEU_TOKEN_DE_API_AIVEN_AQUI"
+aiven_project_name = "seu-nome-de-projeto-na-aiven"
+aiven_service_name = "pg-ods5-ods18-grupo3"
+aiven_cloud_region = "google-southamerica-east1"
+aiven_plan         = "free-1gb"
+database_name      = "fomento_db"
+db_username        = "fomento_analyst"
+db_password        = "SuaSenhaSegura123!"

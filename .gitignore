@@ -1,0 +1,29 @@
+# Arquivos brutos gigantes que excedem o limite de 100MB do GitHub
+# (A base tratada e limpa já está versionada com segurança em etl/dados_amostra_fomento.csv e etl/fomento_analitico.db)
+R496486.csv
+
+# Terraform e Chaves de Segurança (IaC)
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# Python e Ambientes Virtuais
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+venv/
+.venv/
+env/
+.env
+
+# Streamlit e IDEs
+secrets.toml
+**/.streamlit/secrets.toml
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
