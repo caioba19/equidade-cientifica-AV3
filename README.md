@@ -82,6 +82,10 @@ flowchart TD
 ## 🛠️ 4. O Que Foi Desenvolvido no Projeto
 
 ### 4.1. Pipeline de Engenharia de Dados (ETL - `etl/etl_pipeline.py`)
+* **Limpeza e Tratamento de Dados (*Data Cleaning* & Tipagem):**
+  * Higienização de strings financeiras (remoção de `"R$"`, eliminação de pontos de milhar e conversão de vírgula para ponto decimal para permitir operações matemáticas de soma e média).
+  * Tratamento de falhas de tipagem (conversão de anos com decimais flutuantes como `2025.0` para números inteiros `INTEGER`).
+  * Tratamento de valores nulos, registros incompletos e ausência de dados cadastrais (atribuição de categorias seguras como `"Não informada"` para evitar falhas em filtros).
 * **Parsing Inteligente:** Identificação automática de encoding (UTF-8 com BOM para CAPES, Latin-1 para CNPq) e delimitadores (`;` e `,`).
 * **Cruzamento Relacional Automatizado (*PROCV em Código*):**
   * Mapeamento de UFs para as 5 macrorregiões brasileiras (Norte, Nordeste, Sudeste, Sul e Centro-Oeste).
