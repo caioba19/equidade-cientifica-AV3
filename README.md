@@ -20,8 +20,8 @@ O projeto aplica a teoria da **interseccionalidade**, cruzando duas metas centra
 * **ODS 18 (Igualdade Étnico-Racial):** Meta Nacional Brasileira — Eliminar disparidades étnico-raciais e promover a equidade no acesso aos recursos públicos, na produção de ciência e na valorização de saberes de populações negras e povos originários.
 
 ### 🎯 Problemas Analíticos Investigados
-1. **O Fenômeno do *Leaky Pipeline* (Funil de Carreira Científica):** Mulheres negras e indígenas ingressam na base da formação científica (Iniciação Científica - PIBIC), mas sofrem um afunilamento estrutural que reduz severamente sua presença no topo da hierarquia acadêmica e nas bolsas de prestígio (Produtividade em Pesquisa - PQ).
-2. **O GAP de Equidade Orçamentária:** A discrepância entre a quantidade de bolsas concedidas versus a fatia real do orçamento repassado (pesquisadoras sub-representadas frequentemente recebem bolsas de menor valor monetário per capita).
+1. **Distribuição por nível e modalidade:** comparar a participação dos grupos entre modalidades de iniciação, pós-graduação e produtividade. Como os dados são registros agregados/cortes de concessões, essa comparação não acompanha as mesmas pessoas ao longo do tempo e, isoladamente, não comprova um *leaky pipeline*.
+2. **Diferenças observadas na distribuição orçamentária:** comparar a quantidade de concessões e a participação no valor estimado ou pago, sem interpretar a diferença, por si só, como prova de discriminação ou de causalidade.
 3. **Assimetrias Regionais e Institucionais:** A concentração histórica de verbas federais de fomento no eixo Sul-Sudeste em detrimento das regiões Norte, Nordeste e Centro-Oeste.
 
 ---
@@ -34,6 +34,20 @@ O projeto integra exclusivamente bases oficiais do Governo Federal brasileiro:
 | :--- | :--- | :--- | :---: | :--- |
 | **Bolsas e Fomento da Pós-Graduação** | **CAPES** (MEC) | `br-capes-concessao-bolsas-ies-2025-2026-04-01.csv` + Catálogo `metadados_concessao_bolsas_ies_2022a2025.pdf` | **15.002 bolsas** (R$ 429,9 M) | Concessão institucional de cotas de programas *Stricto Sensu*. Valoração calculada segundo as Portarias oficiais do MEC/CAPES (Mestrado: R$ 25.200/ano, Doutorado: R$ 37.200/ano, Pós-Doc: R$ 62.400/ano, IC: R$ 8.400/ano), com ajuste temporal de 2022 pré-reajuste e pesos sociodemográficos baseados no Censo da Pós-Graduação (Geocapes). |
 | **Bolsas e Auxílios Pagos** | **CNPq** (MCTI) | `R496486.csv` | **15.000 bolsas** (R$ 170,3 M) | Microdados financeiros individuais de 213 mil linhas com nomes, modalidades (`IC`, `GM`, `GD`, `PD`, `PQ`), instituição de destino e valores pagos em reais. Sexo inferido via análise heurística de primeiros nomes brasileiros; níveis padronizados e série temporal mapeada via início de vigência de 2022 a 2025. |
+
+### Limitações e cuidados de interpretação
+
+Os resultados deste projeto são **exploratórios**. Os campos sociodemográficos não têm a mesma origem nas duas bases: no CNPq, a classificação de gênero descrita neste projeto é inferida heuristicamente a partir do primeiro nome; para a CAPES, a raça/cor é estimada por distribuição proporcional com base em dados agregados do Censo da Pós-Graduação (Geocapes). Essas estimativas não identificam a autodeclaração individual de cada pessoa e podem produzir erros ou ocultar diferenças entre grupos. Devem ser identificadas como estimativas, nunca como atributos confirmados dos beneficiários.
+
+CAPES e CNPq também têm unidades de observação e formas de contabilizar recursos diferentes: a CAPES registra cotas institucionais e o CNPq contém registros financeiros individuais. Por isso, totais combinados e comparações entre agências precisam ser interpretados com cautela. Sempre que possível, os resultados devem ser apresentados separadamente por agência, modalidade, nível, ano e unidade de observação. A documentação e os gráficos devem distinguir valor efetivamente pago, valor aprovado e valor estimado.
+
+A base analítica contém uma amostra de aproximadamente 15 mil registros por fonte. A amostra é usada para limitar o volume armazenado; seus resultados não devem ser generalizados para as bases completas sem documentar o método de seleção, a semente aleatória, a cobertura e uma comparação com os totais da fonte original. Uma amostra balanceada entre fontes não é automaticamente representativa da população de concessões.
+
+Diferenças entre a participação nas concessões e a participação nos valores podem refletir a composição por modalidade, nível, área, instituição, região e duração. O dashboard descreve associações observadas; não estabelece causas nem comprova discriminação. Da mesma forma, a distribuição por nível acadêmico não representa uma trajetória individual sem dados longitudinais que acompanhem as mesmas pessoas.
+
+Para fortalecer a análise, devem ser publicados os critérios de seleção da amostra e as regras de transformação, além de validações reproduzíveis: totais antes/depois do ETL, nulos, duplicatas, faixas de ano e valor e comparação entre amostra e fonte completa. O dicionário de dados deve refletir a origem real de cada campo e distinguir explicitamente dados observados de estimativas.
+
+**Conclusão responsável:** os indicadores podem apontar diferenças que merecem investigação; a confirmação de desigualdade, sua dimensão e suas causas exige dados sociodemográficos adequados, denominadores de referência comparáveis e análise que controle diferenças entre modalidades e populações elegíveis.
 
 ---
 
