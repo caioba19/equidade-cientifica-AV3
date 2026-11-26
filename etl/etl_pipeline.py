@@ -448,13 +448,64 @@ def carregar_sqlite(dados, sqlite_path="etl/fomento_analitico.db"):
 
 
 def carregar_postgres(dados, db_uri):
-    """Carrega os dados tratados diretamente no cluster Aiven for PostgreSQL."""
+    """Carrega os dados tratados diretamente no cluster Aiven for PostgreSQL usando psycopg2 ou SQLAlchemy."""
+    print(f"[*] Conectando ao Aiven PostgreSQL...")
+
+    # Tenta usar psycopg2 nativo (muito mais rápido e sem dependência obrigatória do SQLAlchemy)
+    try:
+        import psycopg2
+        import psycopg2.extras
+
+        # Conectar diretamente com a URI
+        conn = psycopg2.connect(db_uri)
+        cur = conn.cursor()
+
+        # Criar schema
+        with open("sql/schema.sql", "r", encoding="utf-8") as f:
+            sql_schema = f.read()
+        cur.execute(sql_schema)
+        conn.commit()
+        print("[+] Schema executado no PostgreSQL.")
+
+        # Inserção em lotes
+        query = """
+            INSERT INTO fato_bolsas_fomento (
+                ano, origem_dado, beneficiario_sexo, beneficiario_raca_cor,
+                categoria_interseccional, modalidade_codigo, nivel_bolsa,
+                grande_area, area_conhecimento, sigla_ies, uf, regiao,
+                duracao_meses, valor_pago
+            ) VALUES (
+                %(ano)s, %(origem_dado)s, %(beneficiario_sexo)s, %(beneficiario_raca_cor)s,
+                %(categoria_interseccional)s, %(modalidade_codigo)s, %(nivel_bolsa)s,
+                %(grande_area)s, %(area_conhecimento)s, %(sigla_ies)s, %(uf)s, %(regiao)s,
+                %(duracao_meses)s, %(valor_pago)s
+            )
+        """
+        psycopg2.extras.execute_batch(cur, query, dados, page_size=1000)
+        conn.commit()
+        print(f"[+] Inseridos todos os {len(dados):,} registros com sucesso.")
+
+        # Views analíticas
+        if os.path.exists("sql/views_analiticas.sql"):
+            with open("sql/views_analiticas.sql", "r", encoding="utf-8") as f:
+                views_sql = f.read()
+            cur.execute(views_sql)
+            conn.commit()
+            print("[+] Views analíticas criadas com sucesso no Aiven PostgreSQL.")
+
+        cur.close()
+        conn.close()
+        print("[OK] Carga finalizada com sucesso no Aiven PostgreSQL!")
+        return
+
+    except ImportError:
+        pass
+
     if db_uri.startswith("postgres://"):
         db_uri = db_uri.replace("postgres://", "postgresql://", 1)
 
-    print(f"[*] Conectando ao Aiven PostgreSQL...")
     if not HAS_SQLALCHEMY:
-        raise ImportError("Para carregar no PostgreSQL, instale SQLAlchemy e psycopg2: pip install sqlalchemy psycopg2-binary")
+        raise ImportError("Para carregar no PostgreSQL, instale psycopg2-binary ou sqlalchemy: pip install psycopg2-binary sqlalchemy")
 
     engine = create_engine(db_uri)
     
