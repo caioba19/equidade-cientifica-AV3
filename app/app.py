@@ -86,7 +86,9 @@ def carregar_dados():
 
     if db_uri:
         if db_uri.startswith("postgres://"):
-            db_uri = db_uri.replace("postgres://", "postgresql://", 1)
+            db_uri = db_uri.replace("postgres://", "postgresql+psycopg2://", 1)
+        elif db_uri.startswith("postgresql://") and not db_uri.startswith("postgresql+"):
+            db_uri = db_uri.replace("postgresql://", "postgresql+psycopg2://", 1)
         try:
             from sqlalchemy import create_engine
             engine = create_engine(db_uri)
