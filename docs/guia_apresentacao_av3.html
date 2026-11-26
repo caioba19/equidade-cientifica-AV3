@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Guia de Defesa e Apresentação - AV3</title>
+<style>
+    @page {
+        margin: 15mm;
+        size: A4 portrait;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #1a202c;
+        line-height: 1.5;
+        font-size: 10.5pt;
+    }
+    h1 {
+        color: #1b4d3e;
+        border-bottom: 2px solid #2e7d32;
+        padding-bottom: 6px;
+        font-size: 18pt;
+        margin-top: 0;
+    }
+    h2 {
+        color: #2e7d32;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 4px;
+        margin-top: 20px;
+        font-size: 14pt;
+        page-break-after: avoid;
+    }
+    h3 {
+        color: #2d3748;
+        font-size: 11.5pt;
+        margin-top: 14px;
+        margin-bottom: 4px;
+        page-break-after: avoid;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 9.5pt;
+    }
+    th, td {
+        border: 1px solid #cbd5e0;
+        padding: 6px 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f7fafc;
+        color: #2d3748;
+        font-weight: 600;
+    }
+    tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+    blockquote {
+        border-left: 4px solid #38a169;
+        background-color: #f0fff4;
+        margin: 8px 0;
+        padding: 8px 12px;
+        color: #22543d;
+        border-radius: 4px;
+        font-style: italic;
+    }
+    code {
+        background-color: #edf2f7;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9pt;
+        color: #c53030;
+    }
+    pre {
+        background-color: #1a202c;
+        color: #edf2f7;
+        padding: 10px;
+        border-radius: 6px;
+        font-family: 'Consolas', monospace;
+        font-size: 8.5pt;
+        overflow-x: auto;
+    }
+    pre code {
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+    }
+    hr {
+        border: 0;
+        height: 1px;
+        background: #e2e8f0;
+        margin: 16px 0;
+    }
+    ul, ol {
+        padding-left: 18px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+    li {
+        margin-bottom: 3px;
+    }
+    p {
+        margin-top: 4px;
+        margin-bottom: 6px;
+    }
+</style>
+</head>
+<body>
+<h1>🎓 Guia Estratégico de Defesa e Apresentação do Projeto (AV3)</h1>
+<p><strong>Disciplina:</strong> Computação em Nuvem / Engenharia de Software</p>
+<p><strong>Docente:</strong> Profa. Sheila</p>
+<p><strong>Grupo 3:</strong> Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz</p>
+<p><strong>Tema:</strong> Auditoria de Viés Étnico-Gênero em Fomento à Pesquisa Científica (ODS 5 &amp; ODS 18)</p>
+<p><strong>Aplicação Online:</strong> <a href="https://equidade-cientifica-av3.onrender.com/">https://equidade-cientifica-av3.onrender.com/</a></p>
+<p><strong>Repositório GitHub:</strong> <a href="https://github.com/caioba19/equidade-cientifica-AV3">https://github.com/caioba19/equidade-cientifica-AV3</a></p>
+<hr>
+<h2>📌 1. Visão Geral e Contexto do Projeto</h2>
+<h3>O Problema Central</h3>
+<p>O Brasil possui mais de 55% de sua população autodeclarada negra ou parda (IBGE) e mais de 51% de mulheres. No entanto, historicamente, a destinação de verbas federais de alta complexidade para a pesquisa científica reflete disparidades profundas de representatividade e orçamento.</p>
+<h3>O Objetivo do Projeto</h3>
+<p>Construir uma <strong>plataforma completa de Engenharia de Dados e Computação em Nuvem a custo zero (100% Free Tier)</strong> que audita a distribuição de recursos públicos federais de bolsas de estudo e pesquisa, aplicando a teoria da <strong>interseccionalidade</strong> entre duas metas da Agenda da ONU:</p>
+<ul><li><strong>ODS 5 (Igualdade de Gênero):</strong> Meta 5.5 — Participação plena e liderança feminina em todos os níveis decisórios da ciência.</li></ul>
+<ul><li><strong>ODS 18 (Igualdade Étnico-Racial):</strong> Meta Nacional Brasileira — Eliminação de disparidades raciais e promoção de equidade para pesquisadoras negras (pretas e pardas) e povos originários (indígenas).</li></ul>
+<h3>Volume Auditado</h3>
+<ul><li><strong>Investimento Total:</strong> <strong>R$ 599.326.652,00</strong> (~R$ 600 Milhões).</li></ul>
+<ul><li><strong>Concessões Analisadas:</strong> <strong>30.002 bolsas</strong> mapeadas na série histórica de 2022 a 2025.</li></ul>
+<ul><li><strong>Fontes Oficiais:</strong> Microdados do <strong>CNPq (MCTI)</strong> e Portal de Dados Abertos da <strong>CAPES (MEC)</strong>.</li></ul>
+<hr>
+<h2>🛠️ 2. Tecnologias Utilizadas (Stack Completa)</h2>
+<table>
+<tr><th>Camada</th><th>Tecnologia</th><th>Papel no Projeto</th><th>Justificativa Técnica</th></tr>
+<tr><td><strong>Ingestão &amp; ETL</strong></td><td><strong>Python 3.14</strong></td><td>Pipeline de limpeza, transformação e carga</td><td>Manipulação eficiente de arquivos brutos heterogêneos com <code>csv</code> e <code>psycopg2</code>.</td></tr>
+<tr><td><strong>Banco em Nuvem</strong></td><td><strong>Aiven for PostgreSQL</strong></td><td>SGBD Relacional Gerenciado</td><td>Plano Free Tier (1 GB Storage, 1 CPU, 1 GB RAM, SSL obrigatório).</td></tr>
+<tr><td><strong>Banco Local</strong></td><td><strong>SQLite 3</strong></td><td>SGBD Analítico Local (<code>fomento_analitico.db</code>)</td><td>Alta disponibilidade e resiliência (*fallback offline* se a nuvem oscilar).</td></tr>
+<tr><td><strong>Infraestrutura (IaC)</strong></td><td><strong>Terraform</strong></td><td>Provisionamento declarativo na Aiven</td><td>Provedor oficial <code>aiven/aiven</code>, garantindo reprodutibilidade e gestão segura de segredos.</td></tr>
+<tr><td><strong>Frontend / BI</strong></td><td><strong>Streamlit</strong> + <strong>Plotly</strong></td><td>Dashboard analítico web interativo</td><td>Renderização de KPIs, filtros dinâmicos e gráficos reativos em *Dark Mode*.</td></tr>
+<tr><td><strong>Hospedagem Web</strong></td><td><strong>Render (PaaS)</strong></td><td>Servidor web gratuito na nuvem</td><td>Deploy contínuo via GitHub, adaptação de portas dinâmicas (<code>$PORT</code>) e SSL automático.</td></tr>
+<tr><td><strong>Versionamento</strong></td><td><strong>Git / GitHub</strong></td><td>Controle de código-fonte e CI/CD</td><td>Versionamento com proteção de credenciais sensíveis via <code>.gitignore</code>.</td></tr>
+</table>
+<hr>
+<h2>🏗️ 3. Arquitetura da Solução: Parte por Parte</h2>
+<p>A solução foi desenhada seguindo a metodologia dos <em>Twelve-Factor Apps</em> e arquitetura em camadas:</p>
+<pre><code>
+flowchart TD
+    subgraph &quot;1. Fontes Governamentais Oficiais&quot;
+        A1[&quot;CAPES (MEC)&lt;br/&gt;Cotas Institucionais&quot;]
+        A2[&quot;CNPq (MCTI)&lt;br/&gt;Pagamentos Individuais&quot;]
+    end
+
+    subgraph &quot;2. Esteira de Dados (ETL em Python)&quot;
+        B1[&quot;etl/etl_pipeline.py&lt;br/&gt;Detecção de Encodings e Delimitadores&quot;]
+        B2[&quot;Tratamento de Nulos, Tipagem e Limpeza Monetária&quot;]
+        B3[&quot;Enriquecimento Interseccional (ODS 5 x ODS 18)&quot;]
+        B4[&quot;Amostragem Segura de 30.002 registros&lt;br/&gt;(Blindagem do Teto de 1GB)&quot;]
+    end
+
+    subgraph &quot;3. Camada de Persistência Relacional&quot;
+        C1[(&quot;Aiven for PostgreSQL&lt;br/&gt;Cluster Nuvem com SSL&quot;)]
+        C2[(&quot;SQLite Local&lt;br/&gt;Mecanismo de Fallback&quot;)]
+        C3[&quot;sql/schema.sql &amp; views_analiticas.sql&lt;br/&gt;Índices B-Tree Estratégicos&quot;]
+    end
+
+    subgraph &quot;4. Camada de Apresentação e Nuvem&quot;
+        D1[&quot;Procfile &amp; render.yaml&lt;br/&gt;Configuração de Inicialização PaaS&quot;]
+        D2[&quot;Render Web Service&lt;br/&gt;Hospedagem Pública Gratuita&quot;]
+        D3[&quot;Streamlit (app/app.py)&lt;br/&gt;Dashboard com 4 KPIs e 5 Abas&quot;]
+    end
+
+    A1 --&gt; B1
+    A2 --&gt; B1
+    B1 --&gt; B2 --&gt; B3 --&gt; B4
+    B4 --&gt;|Batch Ingestion via psycopg2| C1
+    B4 --&gt;|Persistência Local| C2
+    C1 --&gt; C3
+    C3 --&gt; D3
+    C2 -.-&gt;|Fallback Automático| D3
+    D1 --&gt; D2
+    D2 --&gt; D3
+</pre>
+<h3>Detalhamento das Camadas:</h3>
+<h3>📁 Camada 1: Ingestão de Bases Públicas (`/`)</h3>
+<ul><li><strong>Base CAPES (<code>br-capes-concessao-bolsas-ies-2025-2026-04-01.csv</code>):</strong> Traz as cotas institucionais concedidas aos programas de pós-graduação das universidades brasileiras. Acompanhada pelo catálogo oficial emitido pelo MEC (<a href="file:///c:/Users/caiov/Documents/equidade-cientifica-AV3/metadados_concessao_bolsas_ies_2022a2025.pdf"><code>metadados_concessao_bolsas_ies_2022a2025.pdf</code></a>).</li></ul>
+<ul><li><strong>Base CNPq (<code>R496486.csv</code>):</strong> Arquivo de 110 MB com microdados nominais de pagamentos individuais de bolsas e auxílios de pesquisa.</li></ul>
+<h3>⚙️ Camada 2: Pipeline de Engenharia de Dados (`etl/etl_pipeline.py`)</h3>
+<p>1. <strong>Detecção de Encodings e Delimitadores:</strong> Identifica automaticamente arquivos em <code>UTF-8-SIG</code> (comum no MEC) ou <code>Latin-1</code> (comum no CNPq), com separadores <code>,</code> ou <code>;</code>.</p>
+<p>2. <strong>Normalização Financeira:</strong> Remove caracteres de moeda (<code>R$</code>), pontos de milhar e converte decimais para <code>float</code>.</p>
+<p>3. <strong>Valoração das Bolsas CAPES:</strong> Como a base da CAPES registra cotas, o pipeline aplica as tabelas financeiras das Portarias do MEC (Mestrado = R$ 25.200/ano, Doutorado = R$ 37.200/ano, Pós-Doc = R$ 62.400/ano, IC = R$ 8.400/ano), com deflator de 0.714 para o ano de 2022 (período anterior ao reajuste federal de 2023).</p>
+<p>4. <strong>Mapeamento de Gênero e Raça:</strong></p>
+<p><em> </em>CNPq:* Gênero inferido a partir do primeiro nome do pesquisador via regras de terminação e dicionário de exceções da língua portuguesa; preenchimento probabilístico quando o campo de raça/cor está ausente.</p>
+<p><em> </em>CAPES:* Simulação probabilística parametrizada com base nas pirâmides demográficas consolidadas do Censo da Pós-Graduação (Geocapes).</p>
+<p>5. <strong>Amostragem Segura (Teto de 1 GB):</strong> Para evitar o estouro de cota do plano gratuito da Aiven, o pipeline limita a extração a 15.002 linhas da CAPES e 15.000 linhas do CNPq (total: 30.002 registros), ocupando menos de 10 MB no PostgreSQL.</p>
+<h3>🏛️ Camada 3: Modelagem Relacional &amp; SQL (`sql/`)</h3>
+<ul><li><strong><a href="file:///c:/Users/caiov/Documents/equidade-cientifica-AV3/sql/schema.sql"><code>schema.sql</code></a>:</strong> Cria a tabela fato relacional <code>fato_bolsas_fomento</code> com chaves, tipagem estrita e índices B-Tree nas colunas de alta filtragem (<code>ano</code>, <code>categoria_interseccional</code>, <code>nivel_bolsa</code>, <code>regiao</code>, <code>grande_area</code>).</li></ul>
+<ul><li><strong><a href="file:///c:/Users/caiov/Documents/equidade-cientifica-AV3/sql/views_analiticas.sql"><code>views_analiticas.sql</code></a>:</strong> Views SQL prontas (<code>vw_resumo_interseccional</code>, <code>vw_funil_carreira_academica</code>) que realizam as agregações pesadas no banco, liberando a CPU da aplicação.</li></ul>
+<h3>💻 Camada 4: Aplicação &amp; Dashboard (`app/app.py`)</h3>
+<ul><li>Conexão resiliente com <strong>dupla contingência</strong>:</li></ul>
+<p>1. Tenta conectar ao cluster <strong>Aiven PostgreSQL</strong> via <code>DATABASE_URL</code>.</p>
+<p>2. Se a nuvem estiver indisponível, faz <strong>fallback automático para o SQLite local</strong> sem interromper o usuário.</p>
+<ul><li>Interface dividida em 5 abas analíticas:</li></ul>
+<p>- <strong>Aba 1 (Visão Geral &amp; KPIs):</strong> Resumo orçamentário e proporção de bolsas.</p>
+<p>- <strong>Aba 2 (O Funil Científico - <em>Leaky Pipeline</em>):</strong> Gráfico de transição da Iniciação Científica até as bolsas de Produtividade em Pesquisa.</p>
+<p>- <strong>Aba 3 (Equidade Orçamentária):</strong> Relação entre quantidade de bolsas e verba financeira real.</p>
+<p>- <strong>Aba 4 (Distribuição Geográfica):</strong> Assimetrias regionais (Sul/Sudeste vs. Norte/Nordeste).</p>
+<p>- <strong>Aba 5 (Base de Dados &amp; Auditoria):</strong> Tabela de microdados com exportação em CSV.</p>
+<h3>☁️ Camada 5: Infraestrutura e Nuvem (`terraform/`, `render.yaml`, `Procfile`)</h3>
+<ul><li><strong>Terraform (<code>terraform/main.tf</code>):</strong> Define a infraestrutura como código (IaC) para criar o serviço Aiven PostgreSQL apontando para o plano <code>free-1gb</code>.</li></ul>
+<ul><li><strong>Procfile:</strong> Instrui a nuvem a rodar o Streamlit escutando na porta dinâmica <code>$PORT</code> e no endereço <code>0.0.0.0</code> em modo <code>headless</code>.</li></ul>
+<ul><li><strong>Render:</strong> Serviço web conectado ao GitHub com <em>auto-deploy</em> a cada <code>git push</code>.</li></ul>
+<hr>
+<h2>📊 4. Principais Descobertas Analíticas</h2>
+<p>1. <strong>O Fenômeno do <em>Leaky Pipeline</em> (O Funil da Carreira Científica):</strong></p>
+<p>* Mulheres negras e pardas registram expressiva representatividade na base da carreira científica (<strong>Iniciação Científica - ~28%</strong>).</p>
+<p>* À medida que a hierarquia acadêmica avança (Mestrado ➡️ Doutorado ➡️ Pós-Doutorado), essa proporção despenca.</p>
+<p>* No topo da carreira acadêmica, nas cobiçadas bolsas de <strong>Produtividade em Pesquisa (PQ)</strong>, a presença de mulheres negras cai para <strong>menos de 4%</strong>.</p>
+<p>2. <strong>O GAP de Equidade Orçamentária:</strong></p>
+<p>* Há uma discrepância estrutural entre a quantidade de bolsas e o volume financeiro: pesquisadoras negras e indígenas recebem proporcionalmente menor fatia da verba do que a quantidade de bolsas que detêm, devido à concentração em bolsas de menor valor monetário per capita.</p>
+<p>3. <strong>Concentração Regional:</strong></p>
+<p>* O eixo Sul-Sudeste absorve mais de 65% do orçamento federal de fomento, aprofundando disparidades geográficas históricas.</p>
+<hr>
+<h2>🎯 5. FAQ da Banca: Respostas Prontas para Possíveis Perguntas da Professora</h2>
+<h3>P1: *&quot;Por que vocês usaram arquivos CSV em vez de conectar direto em uma API dos órgãos?&quot;*</h3>
+<blockquote><strong>Resposta:</strong> <em>&quot;Professora, a legislação brasileira de dados abertos (Decreto nº 8.777/2016 e Lei de Acesso à Informação) determina que os órgãos federais como CAPES e CNPq disponibilizem seus microdados brutos no formato aberto padrão CSV através do portal dados.gov.br. No nosso projeto, o CSV é apenas a camada bruta de ingestão: construímos um pipeline completo de ETL em Python que trata esses arquivos e os carrega de forma estruturada em um banco de dados relacional PostgreSQL na nuvem Aiven via Terraform.&quot;</em></blockquote>
+<hr>
+<h3>P2: *&quot;De onde vieram os dados de raça/cor da CAPES, já que o portal de cotas não identifica o bolsista?&quot;*</h3>
+<blockquote><strong>Resposta:</strong> <em>&quot;Excelente observação, professora. As bases abertas de concessão da CAPES informam as cotas por universidade e curso, sem os nomes individuais dos alunos por exigência da LGPD. Por isso, nosso pipeline de ETL adotou uma abordagem metodológica de <strong>microssimulação estatística paramétrica</strong>, distribuindo os perfis de gênero e raça de acordo com as proporções demográficas oficiais do Censo da Pós-Graduação (Geocapes). Já na base do CNPq, onde tínhamos os nomes nominais dos pagamentos, inferimos o gênero via processamento dos nomes brasileiros.&quot;</em></blockquote>
+<hr>
+<h3>P3: *&quot;Como vocês garantiram que o banco de dados não ultrapassasse o limite gratuito de 1 GB da Aiven?&quot;*</h3>
+<blockquote><strong>Resposta:</strong> <em>&quot;O arquivo original do CNPq tinha mais de 110 MB desordenados. Dentro do <code>etl_pipeline.py</code>, estabelecemos uma estratégia de amostragem controlada de 15.000 registros para cada agência (totalizando 30.002 linhas). Essa base foi carregada em lotes (<code>batch chunks</code>) com tipos de dados estritos (<code>INT</code>, <code>VARCHAR</code>, <code>NUMERIC</code>) e índices B-Tree específicos, ocupando apenas cerca de 8 MB no PostgreSQL da Aiven — operando confortavelmente com menos de 1% do limite de 1.000 MB do Free Tier.&quot;</em></blockquote>
+<hr>
+<h3>P4: *&quot;O que acontece se a internet oscilar ou o cluster da Aiven entrar em manutenção durante a apresentação?&quot;*</h3>
+<blockquote><strong>Resposta:</strong> <em>&quot;O projeto foi concebido sob princípios de alta disponibilidade e tolerância a falhas. O código do Streamlit possui um mecanismo de <strong>resiliência com fallback automático</strong>: ele tenta se conectar via SSL à Aiven; caso ocorra qualquer timeout ou falha de rede, a aplicação chaveia instantaneamente para o banco local SQLite (<code>fomento_analitico.db</code>), que contém os mesmos 30.002 registros limpos. O usuário continua navegando pelos gráficos sem que a aplicação quebre.&quot;</em></blockquote>
+<hr>
+<h3>P5: *&quot;Para que serve o arquivo Procfile no repositório?&quot;*</h3>
+<blockquote><strong>Resposta:</strong> <em>&quot;O <code>Procfile</code> é a especificação padrão de inicialização de processos em plataformas PaaS como o Render. Ele define que a aplicação é um processo do tipo <code>web:</code>, instrui o comando <code>streamlit run app/app.py</code>, vincula o servidor à porta dinâmica <code>$PORT</code> injetada pela nuvem e escuta no endereço <code>0.0.0.0</code> em modo <code>headless</code>, garantindo o roteamento correto do tráfego web público sem erros de bind de porta.&quot;</em></blockquote>
+<hr>
+<h3>P6: *&quot;Qual a diferença entre a ODS 5 e a ODS 18?&quot;*</h3>
+<blockquote><strong>Resposta:</strong> <em>&quot;A ODS 5 é uma meta global da ONU focada na igualdade de gênero e no empoderamento de mulheres e meninas. Já a ODS 18 é uma meta voluntária específica adotada pelo Brasil para a promoção da igualdade étnico-racial e eliminação do racismo institucional. Nosso projeto conecta ambas através da <strong>interseccionalidade</strong>, demonstrando que os desafios enfrentados por pesquisadoras negras e indígenas são qualitativamente mais severos do que quando analisamos gênero ou raça de forma isolada.&quot;</em></blockquote>
+</body></html>
