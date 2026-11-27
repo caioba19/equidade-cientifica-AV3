@@ -624,6 +624,15 @@ with tab4:
             mime="application/json"
         )
 
+# Nota Metodológica Retrátil (Transparência Acadêmica)
+with st.expander("Nota metodológica e fontes dos dados"):
+    st.markdown("""
+    * **Fontes de dados:** Microdados públicos abertos do CNPq (Bolsas e Fomento) e Portal de Dados Abertos da CAPES (2022 a 2025).
+    * **Valoração:** Bolsas da pós-graduação valoradas segundo as Portarias oficiais do MEC/CAPES e valores nominais de pagamentos individuais do CNPq.
+    * **Classificação:** O gênero no CNPq foi inferido pelo primeiro nome registrado; na CAPES, a distribuição sociodemográfica segue as proporções demográficas oficiais do Censo da Pós-Graduação (Geocapes).
+    * **Infraestrutura em nuvem:** Banco de dados relacional Aiven for PostgreSQL com índices B-Tree e hospedagem no Render.
+    """)
+
 # Rodapé
 st.markdown("---")
 st.caption("Projeto Prático de Computação em Nuvem | Aiven PostgreSQL + Streamlit no Render | Grupo 3")

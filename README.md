@@ -128,12 +128,11 @@ Construído com **Streamlit** e gráficos interativos em **Plotly Dark**, o dash
 * **Barra Lateral com Filtros Inteligentes:**
   * Seletor de Agência: `Todas as Agências (CAPES + CNPq)`, `Apenas CAPES (MEC)`, `Apenas CNPq (MCTI)`.
   * Filtros dinâmicos por Ano (2022-2025), Região, Grande Área e Nível de Bolsa.
-  * **Proteção Anti-Crash para Apresentação:** Se o usuário desmarcar acidentalmente todas as opções de um filtro clicando no `x`, o sistema auto-restaura o estado para "todos", impedindo tela preta diante da banca.
-  * Botão de reset rápido: `🔄 Redefinir Todos os Filtros`.
+  * Botão de reset rápido: `Redefinir filtros`.
 * **4 KPIs Principais em Destaque:**
   1. *Orçamento Total Auditado (R$ M)*
   2. *Taxa de Bolsas para Mulheres Negras e Indígenas (%)*
-  3. *Verba Destinada a Mulheres Negras e Indígenas (%) & GAP de Representação*
+  3. *Verba Destinada a Mulheres Negras e Indígenas (%) e GAP de Representação*
   4. *Ticket Médio por Bolsa (R$) comparado à média geral*
 
 ---
@@ -141,26 +140,26 @@ Construído com **Streamlit** e gráficos interativos em **Plotly Dark**, o dash
 ## 5. As 5 Abas do Dashboard Analítico
 
 ```
-[ ⚔️ Comparativo CAPES vs CNPq ] [ 📊 Disparidade Orçamentária ] [ 🧪 O Funil Científico ] [ 🗺️ Assimetrias Regionais ] [ 📋 Base de Dados & Auditoria ]
+[ Comparativo CAPES e CNPq ] [ Distribuição Orçamentária ] [ Funil de Bolsas por Nível ] [ Distribuição Regional e Áreas ] [ Dados da Amostra ]
 ```
 
-1. **⚔️ Comparativo Direto CAPES vs. CNPq:**
+1. **Comparativo entre CAPES e CNPq:**
    * Apresenta o confronto direto entre as duas agências federais.
-   * Evidencia a distinção de missões: a CAPES concentrada em Mestrado e Doutorado (ticket médio de R$ 28,6k), enquanto o CNPq lidera em Iniciação Científica e bolsas de Produtividade em Pesquisa - PQ (ticket médio de R$ 11,3k).
-   * Gráficos Donut comparando a fatia de recursos que cada agência destina aos recortes de gênero e raça.
-2. **📊 Disparidade Orçamentária & Equidade (O Gráfico do GAP):**
-   * Gráfico de barras agrupadas comparando **% do Total de Bolsas** versus **% da Verba Orçamentária**.
-   * Quando a barra de verba é menor que a de bolsas, comprova-se a concentração do grupo em bolsas de menor remuneração.
+   * Evidencia a distinção de escopos: a CAPES concentrada em Mestrado e Doutorado, enquanto o CNPq atua em Iniciação Científica e bolsas de Produtividade em Pesquisa (PQ).
+   * Gráficos comparando a fatia de recursos que cada agência destina aos recortes demográficos.
+2. **Distribuição Orçamentária:**
+   * Gráfico de barras comparando **% do Total de Bolsas** versus **% da Verba Orçamentária**.
+   * Identifica quando a participação orçamentária é inferior à participação quantitativa de bolsas.
    * Gráfico de evolução temporal contínua da verba de 2022 a 2025.
-   * Top 10 Universidades com maior captação de recursos no país.
-3. **🧪 O Funil Científico (*Leaky Pipeline*):**
-   * Gráfico 100% empilhado mapeando a trajetória acadêmica: *Iniciação Científica $\rightarrow$ Mestrado $\rightarrow$ Doutorado $\rightarrow$ Pós-Doutorado $\rightarrow$ Produtividade em Pesquisa (PQ)*.
-   * Mede exatamente a queda percentual de pesquisadoras negras e indígenas à medida que a hierarquia sobe.
-4. **🗺️ Assimetrias Regionais e Grandes Áreas:**
-   * Distribuição dos investimentos pelas 5 regiões do Brasil.
+   * Top 10 Instituições com maior captação de recursos no país.
+3. **Funil de Bolsas por Nível Acadêmico:**
+   * Gráfico 100% empilhado mapeando os níveis: *Iniciação Científica -> Mestrado -> Doutorado -> Pós-Doutorado -> Produtividade em Pesquisa (PQ)*.
+   * Mede a variação da proporção de pesquisadoras negras e indígenas entre a base da formação e o topo da carreira.
+4. **Distribuição Regional e Áreas:**
+   * Distribuição dos investimentos pelas 5 macrorregiões do Brasil.
    * Volume de fomento por Grandes Áreas do Conhecimento (Engenharias, Humanas, Saúde, Exatas, Biológicas, etc.).
-5. **📋 Base de Dados & Auditoria de Integridade:**
-   * Tabela transparente exibindo os microdados higienizados com pesquisa, ordenação e contadores de registros.
+5. **Dados da Amostra e Exportação:**
+   * Tabela exibindo os microdados com opção de exportação em CSV e JSON.
 
 ---
 
