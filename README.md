@@ -1,32 +1,32 @@
-# 🔬 Auditoria de Viés Étnico-Gênero em Fomento à Pesquisa Científica (ODS 5 & ODS 18)
+# Auditoria de Viés Étnico-Gênero em Fomento à Pesquisa Científica (ODS 5 e ODS 18)
 
 > **Instituição:** Centro Universitário / Faculdade de Tecnologia  
 > **Disciplina:** Computação em Nuvem / Engenharia de Software  
 > **Docente:** Profa. Sheila  
-> **Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz  
+> **Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz  
 > **Tema:** Proporção de bolsas concedidas e orçamento aprovado para pesquisadoras negras e indígenas.  
-> **Fontes de Dados Públicas Oficiais:** Portal de Dados Abertos da CAPES (MEC) & Painel de Dados Abertos do CNPq (MCTI).  
-> **Série Histórica Auditada:** 2022 a 2025 (4 anos consolidados).  
-> **Investimento Total Auditado:** **R$ 600.194.948,00** distribuídos em **30.002 concessões analisadas**.
+> **Fontes de Dados Públicas Oficiais:** Portal de Dados Abertos da CAPES (MEC) e Painel de Dados Abertos do CNPq (MCTI).  
+> **Série Histórica Auditada:** 2022 a 2025.  
+> **Investimento Total Auditado:** R$ 599.326.652,00 distribuídos em 30.002 concessões analisadas.
 
 ---
 
-## 📖 1. Visão Geral e Contexto Acadêmico
+## 1. Visão Geral e Contexto Acadêmico
 
-Este projeto consiste em uma plataforma de **Cloud Data Analytics & Engenharia de Dados a Custo Zero (100% Free Tier)** desenvolvida para investigar e auditar a equidade na destinação de recursos públicos federais de fomento à pesquisa no Brasil, integrando os ecossistemas das duas maiores agências de fomento científico do país: a **CAPES** (vinculada ao Ministério da Educação - MEC) e o **CNPq** (vinculado ao Ministério da Ciência, Tecnologia e Inovação - MCTI).
+Este projeto consiste em uma plataforma de análise de dados e engenharia em nuvem desenvolvida para investigar e auditar a equidade na destinação de recursos públicos federais de fomento à pesquisa no Brasil, integrando os ecossistemas das duas maiores agências do país: a **CAPES** (vinculada ao MEC) e o **CNPq** (vinculado ao MCTI).
 
-O projeto aplica a teoria da **interseccionalidade**, cruzando duas metas centrais da Agenda 2030 da ONU:
+O projeto aplica a perspectiva de **interseccionalidade**, cruzando duas metas centrais da Agenda da ONU:
 * **ODS 5 (Igualdade de Gênero):** Meta 5.5 — Garantir a participação plena e efetiva das mulheres e a igualdade de oportunidades para a liderança em todos os níveis de tomada de decisão.
 * **ODS 18 (Igualdade Étnico-Racial):** Meta Nacional Brasileira — Eliminar disparidades étnico-raciais e promover a equidade no acesso aos recursos públicos, na produção de ciência e na valorização de saberes de populações negras e povos originários.
 
-### 🎯 Problemas Analíticos Investigados
-1. **Distribuição por nível e modalidade:** comparar a participação dos grupos entre modalidades de iniciação, pós-graduação e produtividade. Como os dados são registros agregados/cortes de concessões, essa comparação não acompanha as mesmas pessoas ao longo do tempo e, isoladamente, não comprova um *leaky pipeline*.
-2. **Diferenças observadas na distribuição orçamentária:** comparar a quantidade de concessões e a participação no valor estimado ou pago, sem interpretar a diferença, por si só, como prova de discriminação ou de causalidade.
-3. **Assimetrias Regionais e Institucionais:** A concentração histórica de verbas federais de fomento no eixo Sul-Sudeste em detrimento das regiões Norte, Nordeste e Centro-Oeste.
+### Problemas Analíticos Investigados
+1. **Distribuição por nível e modalidade:** Comparar a participação dos grupos entre modalidades de iniciação científica, pós-graduação e produtividade em pesquisa.
+2. **Diferenças na distribuição orçamentária:** Comparar a quantidade de concessões e a participação no valor pago ou estimado.
+3. **Assimetrias Regionais e Institucionais:** Analisar a concentração histórica de recursos de fomento no eixo Sul-Sudeste em comparação às regiões Norte, Nordeste e Centro-Oeste.
 
 ---
 
-## 🏛️ 2. Bases de Dados Públicas Oficiais e Metodologia
+## 2. Bases de Dados Públicas Oficiais e Metodologia
 
 O projeto integra exclusivamente bases oficiais do Governo Federal brasileiro:
 
@@ -51,9 +51,9 @@ Para fortalecer a análise, devem ser publicados os critérios de seleção da a
 
 ---
 
-## ☁️ 3. Arquitetura da Solução em Nuvem (100% Free Tier)
+## 3. Arquitetura da Solução em Nuvem
 
-Toda a arquitetura foi desenhada para operar com custo zero absoluto, utilizando os limites gratuitos da **Aiven** (1 GB de armazenamento PostgreSQL e 1 vCPU) e plataformas gratuitas de hospedagem Web (**Streamlit Community Cloud / Render**):
+Toda a arquitetura foi desenhada para operar com custo zero absoluto, utilizando os limites gratuitos da **Aiven** (1 GB de armazenamento PostgreSQL e 1 vCPU) e plataformas gratuitas de hospedagem Web (**Render**):
 
 ```mermaid
 flowchart TD
@@ -93,7 +93,7 @@ flowchart TD
 
 ---
 
-## 🛠️ 4. O Que Foi Desenvolvido no Projeto
+## 4. O Que Foi Desenvolvido no Projeto
 
 ### 4.1. Pipeline de Engenharia de Dados (ETL - `etl/etl_pipeline.py`)
 * **Limpeza e Tratamento de Dados (*Data Cleaning* & Tipagem):**
@@ -138,7 +138,7 @@ Construído com **Streamlit** e gráficos interativos em **Plotly Dark**, o dash
 
 ---
 
-## 📊 5. As 5 Abas do Dashboard Analítico
+## 5. As 5 Abas do Dashboard Analítico
 
 ```
 [ ⚔️ Comparativo CAPES vs CNPq ] [ 📊 Disparidade Orçamentária ] [ 🧪 O Funil Científico ] [ 🗺️ Assimetrias Regionais ] [ 📋 Base de Dados & Auditoria ]
@@ -164,7 +164,7 @@ Construído com **Streamlit** e gráficos interativos em **Plotly Dark**, o dash
 
 ---
 
-## 📁 6. Estrutura Completa do Repositório
+## 6. Estrutura do Repositório
 
 ```text
 sheila av3/
@@ -202,7 +202,7 @@ sheila av3/
 
 ---
 
-## 🚀 7. Como Executar e Reproduzir
+## 7. Como Executar e Reproduzir
 
 ### 7.1. Execução Local Imediata
 1. **Clone o repositório e instale as dependências:**
@@ -258,7 +258,7 @@ sheila av3/
 
 ---
 
-## 🏆 8. Atendimento Rigoroso ao Barema Oficial (10,0 Pontos)
+## 8. Atendimento aos Critérios do Barema Oficial (10,0 Pontos)
 
 | Critério no Guia Oficial | Aspectos Avaliados | Status da Implementação no Projeto | Pontuação |
 | :--- | :--- | :--- | :---: |
