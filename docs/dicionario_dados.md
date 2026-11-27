@@ -1,5 +1,5 @@
 # Dicionário de Dados - Auditoria de Fomento à Pesquisa Científica
-**Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz  
+**Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz  
 **Fontes Oficiais:** Microdados de Bolsas e Fomento do CNPq & Portal de Dados Abertos da CAPES  
 **Alinhamento Estratégico:** ODS 5 (Igualdade de Gênero) e ODS 18 (Igualdade Étnico-Racial)
 

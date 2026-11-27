@@ -1,0 +1,118 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Length 3851 >>
+stream
+BT /F2 19 Tf 54 755 Td (Auditoria de Viés Étnico-Gênero em Fomento à Pesquisa Científica) Tj ET
+BT /F2 13 Tf 54 722 Td (Especificação de Dados  descrição do tratamento implementado) Tj ET
+BT /F1 9.5 Tf 54 696 Td (Equipe: Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa e Gabriel Luz) Tj ET
+BT /F2 13 Tf 54 666 Td (Problema e fontes) Tj ET
+BT /F1 9.5 Tf 54 647 Td (O projeto propõe analisar a distribuição de bolsas e recursos de fomento à pesquisa) Tj ET
+BT /F1 9.5 Tf 54 633 Td (   científica, com recorte de gênero e raça/cor. O pipeline recebe arquivos CSV atribuídos às) Tj ET
+BT /F1 9.5 Tf 54 619 Td (   fontes da CAPES e do CNPq e consolida campos selecionados em uma tabela analítica.) Tj ET
+BT /F1 9.5 Tf 54 597 Td (As fontes têm unidades de observação diferentes. O arquivo da CAPES usado pelo projeto é) Tj ET
+BT /F1 9.5 Tf 54 583 Td (   tratado como concessões de cotas institucionais; o arquivo do CNPq é tratado como registros de) Tj ET
+BT /F1 9.5 Tf 54 569 Td (   fomento individuais. Portanto, os registros das duas fontes não devem ser considerados) Tj ET
+BT /F1 9.5 Tf 54 555 Td (   equivalentes sem qualificação.) Tj ET
+BT /F2 13 Tf 54 525 Td (1. Ingestão e transformação) Tj ET
+BT /F1 9.5 Tf 54 506 Td (O ETL está implementado em etl/etl_pipeline.py. Ele tenta ler os CSVs com codificação UTF-8 e) Tj ET
+BT /F1 9.5 Tf 54 492 Td (   recorre a Latin-1 em caso de erro; escolhe vírgula ou ponto e vírgula como delimitador com) Tj ET
+BT /F1 9.5 Tf 54 478 Td (   base na primeira linha; procura valores em nomes alternativos de colunas; padroniza campos) Tj ET
+BT /F1 9.5 Tf 54 464 Td (   como modalidade, nível, UF e região.) Tj ET
+BT /F1 9.5 Tf 54 442 Td (Os registros processados são gravados em SQLite e CSV. O pipeline também pode carregá-los no) Tj ET
+BT /F1 9.5 Tf 54 428 Td (   PostgreSQL quando recebe uma URI de conexão.) Tj ET
+BT /F1 9.5 Tf 54 406 Td (A leitura não implementa o recorte temporal de 2019 a 2023 descrito no documento de) Tj ET
+BT /F1 9.5 Tf 54 392 Td (   planejamento. No CNPq, o ano pode vir do campo de referência ou da data de início do processo;) Tj ET
+BT /F1 9.5 Tf 54 378 Td (   para a CAPES, o código atribui anos entre 2022 e 2025 durante a geração dos registros.) Tj ET
+BT /F2 13 Tf 54 348 Td (2. Limite de registros) Tj ET
+BT /F1 9.5 Tf 54 329 Td (Na execução padrão, o código tenta processar até 15.000 linhas de cada arquivo. Esse limite) Tj ET
+BT /F1 9.5 Tf 54 315 Td (   reduz o volume, mas não é uma amostragem aleatória ou estratificada: as primeiras linhas) Tj ET
+BT /F1 9.5 Tf 54 301 Td (   elegíveis são processadas até o limite. No ramo da CAPES, uma linha de entrada pode gerar mais) Tj ET
+BT /F1 9.5 Tf 54 287 Td (   de um registro de saída.) Tj ET
+BT /F1 9.5 Tf 54 265 Td (Assim, os resultados dessa saída limitada não devem ser apresentados como representativos das) Tj ET
+BT /F1 9.5 Tf 54 251 Td (   bases completas sem validação adicional.) Tj ET
+BT /F2 13 Tf 54 221 Td (3. Campos e transformações) Tj ET
+BT /F1 9.5 Tf 54 202 Td (Ano: convertido para inteiro. No CNPq pode usar o ano de início do processo; no ramo CAPES são) Tj ET
+BT /F1 9.5 Tf 54 188 Td (   atribuídos anos entre 2022 e 2025.) Tj ET
+BT /F1 9.5 Tf 54 166 Td (Origem: identificada pelo nome do arquivo ou por campo de origem. Valores esperados: CAPES e) Tj ET
+BT /F1 9.5 Tf 54 152 Td (   CNPq.) Tj ET
+BT /F1 9.5 Tf 54 130 Td (Modalidade e nível: siglas e descrições são mapeadas para categorias como iniciação) Tj ET
+BT /F1 9.5 Tf 54 116 Td (   científica, mestrado, doutorado, pós-doutorado e produtividade. As categorias dependem dos) Tj ET
+BT /F1 9.5 Tf 54 102 Td (   textos encontrados nas colunas.) Tj ET
+BT /F1 9.5 Tf 54 80 Td (UF e região: a região é lida da base quando disponível; caso contrário, é derivada da UF. UF) Tj ET
+BT /F1 9.5 Tf 54 66 Td (   ausente pode receber um valor padrão.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 4042 >>
+stream
+BT /F1 9.5 Tf 54 755 Td (Valor no CNPq: o código procura campos de valor e converte formatos com vírgula decimal e) Tj ET
+BT /F1 9.5 Tf 54 741 Td (   separador de milhar. Se não encontrar ou não conseguir converter, pode resultar em zero.) Tj ET
+BT /F1 9.5 Tf 54 719 Td (Valor no ramo CAPES: o código associa valores anuais fixos ao nível e aplica fator 0,714 para) Tj ET
+BT /F1 9.5 Tf 54 705 Td (   registros atribuídos a 2022. São valores calculados pelo script e precisam ser validados) Tj ET
+BT /F1 9.5 Tf 54 691 Td (   contra a fonte e as regras adotadas.) Tj ET
+BT /F1 9.5 Tf 54 669 Td (Gênero no CNPq: inferido por regras sobre o primeiro nome; não confirma a identidade de gênero) Tj ET
+BT /F1 9.5 Tf 54 655 Td (   da pessoa.) Tj ET
+BT /F1 9.5 Tf 54 633 Td (Raça/cor no CNPq: usa um campo da linha se encontrado; na ausência, sorteia uma categoria) Tj ET
+BT /F1 9.5 Tf 54 619 Td (   segundo pesos definidos no código. Categoria sorteada não é autodeclaração.) Tj ET
+BT /F1 9.5 Tf 54 597 Td (Gênero e raça/cor na CAPES: perfis sintéticos são sorteados com pesos definidos no código; não) Tj ET
+BT /F1 9.5 Tf 54 583 Td (   são dados individuais observados na base CAPES.) Tj ET
+BT /F1 9.5 Tf 54 561 Td (Categoria interseccional: calculada a partir das categorias de gênero e raça/cor atribuídas e) Tj ET
+BT /F1 9.5 Tf 54 547 Td (   herda as limitações dessas categorias.) Tj ET
+BT /F2 13 Tf 54 517 Td (4. Modelo de armazenamento) Tj ET
+BT /F1 9.5 Tf 54 498 Td (Os dados consolidados são destinados à tabela fato_bolsas_fomento, definida em sql/schema.sql.) Tj ET
+BT /F1 9.5 Tf 54 484 Td (   Entre os campos armazenados estão ano, origem, gênero, raça/cor, categoria interseccional,) Tj ET
+BT /F1 9.5 Tf 54 470 Td (   modalidade, nível, área, instituição, UF, região, duração e valor.) Tj ET
+BT /F1 9.5 Tf 54 448 Td (O schema contém comentários que descrevem raça/cor como autodeclarada e o valor como orçamento) Tj ET
+BT /F1 9.5 Tf 54 434 Td (   aprovado/executado. Essas descrições precisam ser ajustadas, pois não correspondem) Tj ET
+BT /F1 9.5 Tf 54 420 Td (   necessariamente aos valores sintéticos e calculados gerados pelo ETL.) Tj ET
+BT /F2 13 Tf 54 390 Td (5. Limitações e interpretação) Tj ET
+BT /F1 9.5 Tf 54 371 Td (As categorias sociodemográficas produzidas pelo ETL não devem ser interpretadas como) Tj ET
+BT /F1 9.5 Tf 54 357 Td (   autodeclarações ou identificações confirmadas dos beneficiários. Os pesos de sorteio estão) Tj ET
+BT /F1 9.5 Tf 54 343 Td (   definidos no código e precisam de fonte e validação independentes antes de serem descritos) Tj ET
+BT /F1 9.5 Tf 54 329 Td (   como proporções oficiais.) Tj ET
+BT /F1 9.5 Tf 54 307 Td (O limite de leitura não assegura representatividade. Além disso, CAPES e CNPq registram tipos) Tj ET
+BT /F1 9.5 Tf 54 293 Td (   diferentes de informação, e o valor do CNPq pode representar algo diferente do valor calculado) Tj ET
+BT /F1 9.5 Tf 54 279 Td (   para a CAPES. Comparações e totais combinados precisam explicitar essas diferenças.) Tj ET
+BT /F1 9.5 Tf 54 257 Td (Por esses motivos, os resultados atuais devem ser descritos como exploratórios e dependentes) Tj ET
+BT /F1 9.5 Tf 54 243 Td (   das regras implementadas, não como comprovação de desigualdade ou de suas causas.) Tj ET
+BT /F2 13 Tf 54 213 Td (6. Itens a validar com a orientação da disciplina) Tj ET
+BT /F1 9.5 Tf 54 194 Td (" Se as categorias inferidas e sorteadas devem ser removidas ou apresentadas somente como) Tj ET
+BT /F1 9.5 Tf 54 180 Td (   simulação.) Tj ET
+BT /F1 9.5 Tf 54 158 Td (" Se o recorte e a seleção das linhas atendem ao objetivo da análise.) Tj ET
+BT /F1 9.5 Tf 54 136 Td (" Se os valores monetários atribuídos à CAPES e lidos do CNPq são comparáveis.) Tj ET
+BT /F1 9.5 Tf 54 114 Td (" Se o modelo de dados descreve corretamente dados observados e calculados.) Tj ET
+BT /F1 9.5 Tf 54 92 Td (Observação: esta especificação descreve o comportamento encontrado no código; não afirma que) Tj ET
+BT /F1 9.5 Tf 54 78 Td (   as regras implementadas sejam metodologicamente adequadas.) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 3 0 R >> >> /Contents 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000004126 00000 n 
+0000004262 00000 n 
+0000008355 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+8491
+%%EOF

@@ -1,7 +1,7 @@
 # 🎓 Guia Estratégico de Defesa e Apresentação do Projeto (AV3)
 **Disciplina:** Computação em Nuvem / Engenharia de Software  
 **Docente:** Profa. Sheila  
-**Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz  
+**Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz  
 **Tema:** Auditoria de Viés Étnico-Gênero em Fomento à Pesquisa Científica (ODS 5 & ODS 18)  
 **Aplicação Online:** [https://equidade-cientifica-av3.onrender.com/](https://equidade-cientifica-av3.onrender.com/)  
 **Repositório GitHub:** [https://github.com/caioba19/equidade-cientifica-AV3](https://github.com/caioba19/equidade-cientifica-AV3)

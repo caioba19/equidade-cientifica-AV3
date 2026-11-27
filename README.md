@@ -3,7 +3,7 @@
 > **Instituição:** Centro Universitário / Faculdade de Tecnologia  
 > **Disciplina:** Computação em Nuvem / Engenharia de Software  
 > **Docente:** Profa. Sheila  
-> **Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz  
+> **Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz  
 > **Tema:** Proporção de bolsas concedidas e orçamento aprovado para pesquisadoras negras e indígenas.  
 > **Fontes de Dados Públicas Oficiais:** Portal de Dados Abertos da CAPES (MEC) e Painel de Dados Abertos do CNPq (MCTI).  
 > **Série Histórica Auditada:** 2022 a 2025.  

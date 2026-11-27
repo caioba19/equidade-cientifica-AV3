@@ -2,7 +2,7 @@
 
 > **Disciplina:** Computação em Nuvem / Engenharia de Software  
 > **Docente:** Profa. Sheila  
-> **Equipe (Grupo 3):** Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz  
+> **Equipe (Grupo 3):** Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz  
 > **Tema:** Proporção de bolsas concedidas e orçamento aprovado para pesquisadoras negras e indígenas.  
 > **Bases Públicas Oficiais:** Painel de Dados Abertos do CNPq & Portal de Dados Abertos da CAPES.
 

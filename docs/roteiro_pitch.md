@@ -1,6 +1,6 @@
 # Roteiro do Pitch Técnico de Apresentação (10 Minutos)
 **Disciplina:** Computação em Nuvem / Engenharia de Software  
-**Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz  
+**Grupo 3:** Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz  
 **Tema:** Auditoria de Viés Étnico-Gênero em Fomento à Pesquisa Científica (ODS 5 & ODS 18)
 
 ---
@@ -29,7 +29,7 @@
 ---
 
 ### Minuto 04:00 a 06:00 | 3. Engenharia de Dados, Modelagem SQL e Otimização Free Tier
-* **Orador:** Yuri Sales / Gabriel Luz
+* **Orador:** Matheus Rosa / Gabriel Luz
 * **O que exibir na tela:** Código do `etl_pipeline.py` e queries no `schema.sql` / `views_analiticas.sql`.
 * **Mensagem-chave:**
   * Desafio do Free Tier: O limite de 1 GB de armazenamento e 1 vCPU da Aiven.

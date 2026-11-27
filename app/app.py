@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Painel de Análise de Fomento à Pesquisa Científica (ODS 5 e ODS 18)
-Grupo 3: Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz
+Grupo 3: Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz
 Disciplina: Computação em Nuvem / Engenharia de Software
 Arquitetura: Aiven for PostgreSQL (Free Tier) + Streamlit no Render
 """
@@ -171,7 +171,7 @@ df_filtrado = dados_df[
 # Cabeçalho Principal (limpo, formal e acadêmico)
 st.title("Análise de Equidade no Fomento à Pesquisa Científica")
 st.markdown("**ODS 5 (Igualdade de Gênero) e ODS 18 (Igualdade Étnico-Racial)**")
-st.caption("Grupo 3: Caio Vinicius, Daniel Oliveira, Maicon Dias, Yuri Sales, Gabriel Luz | Computação em Nuvem / Engenharia de Software (AV3)")
+st.caption("Grupo 3: Caio Vinicius, Daniel Oliveira, Maicon Dias, Matheus Rosa, Gabriel Luz | Computação em Nuvem / Engenharia de Software (AV3)")
 
 if df_filtrado.empty:
     st.warning("Nenhum registro encontrado para os filtros selecionados.")
