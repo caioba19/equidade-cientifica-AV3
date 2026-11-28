@@ -45,7 +45,7 @@ Esta tabela armazena os registros higienizados e normalizados das concessões de
 
 ## 3. Catálogo Oficial de Metadados da CAPES (DPB / DDI-BR-CAPES-CONCESSAO-BOLSAS-IES)
 
-Mapeamento de conformidade com o documento oficial [`metadados_concessao_bolsas_ies_2022a2025.pdf`](file:///c:/Users/caiov/Documents/sheila%20av3/metadados_concessao_bolsas_ies_2022a2025.pdf):
+Mapeamento de conformidade com o documento oficial `docs/metadados_concessao_bolsas_ies_2022a2025.pdf`:
 
 | ID | Código da Variável | Nome Oficial / Definição | Tipo | Tratamento / Destino no Modelo |
 | :--- | :--- | :--- | :--- | :--- |
