@@ -8,18 +8,9 @@ Objetivo: Ingestão, tratamento interseccional (ODS 5 x ODS 18) e carga no Aiven
 """
 
 import os
-import sys
 import csv
 import argparse
 import sqlite3
-from datetime import datetime
-
-# Tentativa de importação de bibliotecas de produção em nuvem (se instaladas)
-try:
-    import pandas as pd
-    HAS_PANDAS = True
-except ImportError:
-    HAS_PANDAS = False
 
 try:
     from sqlalchemy import create_engine, text
@@ -398,108 +389,107 @@ def limpar_e_tratar_dados(caminho_csv, max_registros=25000):
 def carregar_sqlite(dados, sqlite_path="etl/fomento_analitico.db"):
     """Carrega os dados tratados no SQLite local para testes imediatos sem custos."""
     print(f"[*] Carregando {len(dados)} registros no banco local SQLite: {sqlite_path}")
-    conn = sqlite3.connect(sqlite_path)
-    cur = conn.cursor()
-
-    cur.execute("DROP TABLE IF EXISTS fato_bolsas_fomento;")
-    cur.execute("""
-        CREATE TABLE fato_bolsas_fomento (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ano INTEGER,
-            origem_dado TEXT,
-            beneficiario_sexo TEXT,
-            beneficiario_raca_cor TEXT,
-            categoria_interseccional TEXT,
-            modalidade_codigo TEXT,
-            nivel_bolsa TEXT,
-            grande_area TEXT,
-            area_conhecimento TEXT,
-            sigla_ies TEXT,
-            uf TEXT,
-            regiao TEXT,
-            duracao_meses INTEGER,
-            valor_pago REAL,
-            data_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
-    """)
-
-    cur.executemany("""
-        INSERT INTO fato_bolsas_fomento (
-            ano, origem_dado, beneficiario_sexo, beneficiario_raca_cor,
-            categoria_interseccional, modalidade_codigo, nivel_bolsa,
-            grande_area, area_conhecimento, sigla_ies, uf, regiao,
-            duracao_meses, valor_pago
-        ) VALUES (
-            :ano, :origem_dado, :beneficiario_sexo, :beneficiario_raca_cor,
-            :categoria_interseccional, :modalidade_codigo, :nivel_bolsa,
-            :grande_area, :area_conhecimento, :sigla_ies, :uf, :regiao,
-            :duracao_meses, :valor_pago
-        );
-    """, dados)
-
-    # Índices para alta performance
-    cur.execute("CREATE INDEX idx_fato_ano ON fato_bolsas_fomento(ano);")
-    cur.execute("CREATE INDEX idx_fato_interseccional ON fato_bolsas_fomento(categoria_interseccional);")
-    cur.execute("CREATE INDEX idx_fato_nivel ON fato_bolsas_fomento(nivel_bolsa);")
-
-    conn.commit()
-    conn.close()
-    print(f"[OK] Dados carregados com sucesso no SQLite local!")
-
-
-def carregar_postgres(dados, db_uri):
-    """Carrega os dados tratados diretamente no cluster Aiven for PostgreSQL usando psycopg2 ou SQLAlchemy."""
-    print(f"[*] Conectando ao Aiven PostgreSQL...")
-
-    # Tenta usar psycopg2 nativo (muito mais rápido e sem dependência obrigatória do SQLAlchemy)
-    try:
-        import psycopg2
-        import psycopg2.extras
-
-        # Conectar diretamente com a URI
-        conn = psycopg2.connect(db_uri)
+    with sqlite3.connect(sqlite_path) as conn:
         cur = conn.cursor()
 
-        # Criar schema
-        with open("sql/schema.sql", "r", encoding="utf-8") as f:
-            sql_schema = f.read()
-        cur.execute(sql_schema)
-        conn.commit()
-        print("[+] Schema executado no PostgreSQL.")
+        cur.execute("DROP TABLE IF EXISTS fato_bolsas_fomento;")
+        cur.execute("""
+            CREATE TABLE fato_bolsas_fomento (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ano INTEGER,
+                origem_dado TEXT,
+                beneficiario_sexo TEXT,
+                beneficiario_raca_cor TEXT,
+                categoria_interseccional TEXT,
+                modalidade_codigo TEXT,
+                nivel_bolsa TEXT,
+                grande_area TEXT,
+                area_conhecimento TEXT,
+                sigla_ies TEXT,
+                uf TEXT,
+                regiao TEXT,
+                duracao_meses INTEGER,
+                valor_pago REAL,
+                data_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        """)
 
-        # Inserção em lotes
-        query = """
+        cur.executemany("""
             INSERT INTO fato_bolsas_fomento (
                 ano, origem_dado, beneficiario_sexo, beneficiario_raca_cor,
                 categoria_interseccional, modalidade_codigo, nivel_bolsa,
                 grande_area, area_conhecimento, sigla_ies, uf, regiao,
                 duracao_meses, valor_pago
             ) VALUES (
-                %(ano)s, %(origem_dado)s, %(beneficiario_sexo)s, %(beneficiario_raca_cor)s,
-                %(categoria_interseccional)s, %(modalidade_codigo)s, %(nivel_bolsa)s,
-                %(grande_area)s, %(area_conhecimento)s, %(sigla_ies)s, %(uf)s, %(regiao)s,
-                %(duracao_meses)s, %(valor_pago)s
-            )
-        """
-        psycopg2.extras.execute_batch(cur, query, dados, page_size=1000)
+                :ano, :origem_dado, :beneficiario_sexo, :beneficiario_raca_cor,
+                :categoria_interseccional, :modalidade_codigo, :nivel_bolsa,
+                :grande_area, :area_conhecimento, :sigla_ies, :uf, :regiao,
+                :duracao_meses, :valor_pago
+            );
+        """, dados)
+
+        # Índices para alta performance
+        cur.execute("CREATE INDEX idx_fato_ano ON fato_bolsas_fomento(ano);")
+        cur.execute("CREATE INDEX idx_fato_interseccional ON fato_bolsas_fomento(categoria_interseccional);")
+        cur.execute("CREATE INDEX idx_fato_nivel ON fato_bolsas_fomento(nivel_bolsa);")
+
         conn.commit()
-        print(f"[+] Inseridos todos os {len(dados):,} registros com sucesso.")
+    print("[OK] Dados carregados com sucesso no SQLite local!")
 
-        # Views analíticas
-        if os.path.exists("sql/views_analiticas.sql"):
-            with open("sql/views_analiticas.sql", "r", encoding="utf-8") as f:
-                views_sql = f.read()
-            cur.execute(views_sql)
-            conn.commit()
-            print("[+] Views analíticas criadas com sucesso no Aiven PostgreSQL.")
 
-        cur.close()
-        conn.close()
-        print("[OK] Carga finalizada com sucesso no Aiven PostgreSQL!")
-        return
+def carregar_postgres(dados, db_uri):
+    """Carrega os dados tratados diretamente no cluster Aiven for PostgreSQL usando psycopg2 ou SQLAlchemy."""
+    print("[*] Conectando ao Aiven PostgreSQL...")
 
+    # Tenta usar psycopg2 nativo (muito mais rápido e sem dependência obrigatória do SQLAlchemy)
+    try:
+        import psycopg2
+        import psycopg2.extras
+        has_psycopg2 = True
     except ImportError:
-        pass
+        has_psycopg2 = False
+
+    if has_psycopg2:
+        conn = psycopg2.connect(db_uri)
+        try:
+            with conn.cursor() as cur:
+                # Criar schema
+                with open("sql/schema.sql", "r", encoding="utf-8") as f:
+                    sql_schema = f.read()
+                cur.execute(sql_schema)
+                conn.commit()
+                print("[+] Schema executado no PostgreSQL.")
+
+                # Inserção em lotes
+                query = """
+                    INSERT INTO fato_bolsas_fomento (
+                        ano, origem_dado, beneficiario_sexo, beneficiario_raca_cor,
+                        categoria_interseccional, modalidade_codigo, nivel_bolsa,
+                        grande_area, area_conhecimento, sigla_ies, uf, regiao,
+                        duracao_meses, valor_pago
+                    ) VALUES (
+                        %(ano)s, %(origem_dado)s, %(beneficiario_sexo)s, %(beneficiario_raca_cor)s,
+                        %(categoria_interseccional)s, %(modalidade_codigo)s, %(nivel_bolsa)s,
+                        %(grande_area)s, %(area_conhecimento)s, %(sigla_ies)s, %(uf)s, %(regiao)s,
+                        %(duracao_meses)s, %(valor_pago)s
+                    )
+                """
+                psycopg2.extras.execute_batch(cur, query, dados, page_size=1000)
+                conn.commit()
+                print(f"[+] Inseridos todos os {len(dados):,} registros com sucesso.")
+
+                # Views analíticas
+                if os.path.exists("sql/views_analiticas.sql"):
+                    with open("sql/views_analiticas.sql", "r", encoding="utf-8") as f:
+                        views_sql = f.read()
+                    cur.execute(views_sql)
+                    conn.commit()
+                    print("[+] Views analíticas criadas com sucesso no Aiven PostgreSQL.")
+
+            print("[OK] Carga finalizada com sucesso no Aiven PostgreSQL!")
+            return
+        finally:
+            conn.close()
 
     if db_uri.startswith("postgres://"):
         db_uri = db_uri.replace("postgres://", "postgresql://", 1)
@@ -588,18 +578,22 @@ def main():
 
     # Estatísticas de auditoria
     total = len(dados)
-    mulheres_negras_indigenas = sum(1 for d in dados if d["categoria_interseccional"] in ["Mulher Negra (Preta/Parda)", "Mulher Indígena"])
+    filtro_mni = [d for d in dados if d["categoria_interseccional"] in ["Mulher Negra (Preta/Parda)", "Mulher Indígena"]]
+    mulheres_negras_indigenas = len(filtro_mni)
     orcamento_total = sum(d["valor_pago"] for d in dados)
-    orcamento_mni = sum(d["valor_pago"] for d in dados if d["categoria_interseccional"] in ["Mulher Negra (Preta/Parda)", "Mulher Indígena"])
+    orcamento_mni = sum(d["valor_pago"] for d in filtro_mni)
 
-    print("\n" + "="*60)
+    pct_bolsas = (mulheres_negras_indigenas / total * 100) if total > 0 else 0.0
+    pct_orc = (orcamento_mni / orcamento_total * 100) if orcamento_total > 0 else 0.0
+
+    print("\n" + "=" * 60)
     print("RESUMO DA AUDITORIA ANALÍTICA (ODS 5 & ODS 18)")
-    print("="*60)
+    print("=" * 60)
     print(f"Total de concessões analisadas: {total:,}")
     print(f"Investimento total auditado: R$ {orcamento_total:,.2f}")
-    print(f"Bolsas p/ Mulheres Negras e Indígenas: {mulheres_negras_indigenas:,} ({mulheres_negras_indigenas/total*100:.2f}%)")
-    print(f"Verba p/ Mulheres Negras e Indígenas: R$ {orcamento_mni:,.2f} ({orcamento_mni/orcamento_total*100:.2f}%)")
-    print("="*60 + "\n")
+    print(f"Bolsas p/ Mulheres Negras e Indígenas: {mulheres_negras_indigenas:,} ({pct_bolsas:.2f}%)")
+    print(f"Verba p/ Mulheres Negras e Indígenas: R$ {orcamento_mni:,.2f} ({pct_orc:.2f}%)")
+    print("=" * 60 + "\n")
 
     if args.dry_run:
         print("[i] Modo Dry-run ativado. Nenhuma gravação em banco efetuada.")

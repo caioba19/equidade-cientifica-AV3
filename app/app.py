@@ -52,7 +52,7 @@ def carregar_dados():
             db_uri = db_uri.replace("postgresql://", "postgresql+psycopg2://", 1)
         try:
             from sqlalchemy import create_engine
-            engine = create_engine(db_uri)
+            engine = create_engine(db_uri, pool_pre_ping=True)
             query = "SELECT * FROM fato_bolsas_fomento;"
             df = pd.read_sql(query, engine)
             return df, fonte_conexao
@@ -62,9 +62,8 @@ def carregar_dados():
     # 2. Fallback: SQLite local
     sqlite_path = os.path.join(os.path.dirname(__file__), "..", "etl", "fomento_analitico.db")
     if os.path.exists(sqlite_path):
-        conn = sqlite3.connect(sqlite_path)
-        df = pd.read_sql("SELECT * FROM fato_bolsas_fomento", conn)
-        conn.close()
+        with sqlite3.connect(sqlite_path) as conn:
+            df = pd.read_sql("SELECT * FROM fato_bolsas_fomento", conn)
         return df, "Bases Oficiais CAPES + CNPq (SQLite Local)"
 
     # 3. Fallback: CSV
